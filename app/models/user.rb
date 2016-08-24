@@ -1,5 +1,5 @@
 class User < ApplicationRecord
     def test
-        puts "safdsadf";
+        puts "safdsa";
     end
 end
