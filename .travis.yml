@@ -1,0 +1,20 @@
+language: ruby
+rvm:
+ - 2.2
+notifications:
+  email: false
+
+apt addons:
+before_install:
+install:
+before_script:
+script:
+after_success:
+before_deploy:
+deploy:
+  provider: heroku
+  api_key:
+    secure: "dc4adac0-6490-4e98-b3f0-aa1adafd0ee8"
+  on: master
+after_deploy:
+after_script:
