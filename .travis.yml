@@ -9,6 +9,8 @@ before_install:
 install:
 before_script:
 script:
+  - bundle update
+  - bundle install
   - bundle exec rake db:create
   - bundle exec rake db:migrate
 after_success:
