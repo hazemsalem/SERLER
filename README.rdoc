@@ -27,13 +27,3 @@ helloadsfsadfdsaffdsa
 
 Please feel free to use a different markup language if you do not plan to run
 <tt>rake doc:app</tt>.
-
-adsf asdfsafdsadfasdf
-<<<<<<< HEAD
-I change on Sprint1
-=======
-
-I change it yeah!
-I changed again!!
-I Change!
->>>>>>> master
