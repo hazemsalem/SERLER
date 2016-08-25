@@ -1,6 +1,6 @@
 language: ruby
 rvm:
- - 2.2
+ - 2.3
 notifications:
   email: false
 
@@ -24,10 +24,6 @@ deploy:
 after_deploy:
 after_script:
 
-
-language: ruby
-rvm:
-  - "2.3.0"
 
 
 
