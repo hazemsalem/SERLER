@@ -5,23 +5,34 @@
 #   gem 'sqlite3'
 #
 default: &default
-  adapter: sqlite3
+  adapter: postgresql
+  encoding: utf8
+  database: seler_default
   pool: 5
   timeout: 5000
-
+ 
 development:
   adapter: postgresql
+  encoding: utf8
   database: serler_development
   pool: 5
-  timeout: 5000
+  # username: serler-dev
+  # password: serler-dev
+  template: template0
+
 test:
   adapter: postgresql
+  encoding: utf8
   database: serler_test
   pool: 5
   timeout: 5000
+  template: template0
 
 production:
   adapter: postgresql
+  encoding: utf8
   database: serler_production
   pool: 5
   timeout: 5000
+  template: template0
+
