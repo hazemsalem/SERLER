@@ -1,0 +1,86 @@
+<div class="container">
+    <h1>This is the INDEX. <%= link_to 'New Article', new_evidence_source_path %></h1>
+    
+    <div class="list-group">
+        <% @evidence_sources.each do |es| %>
+            <div class="list-group-item">
+                <table class="table table-stripped">
+                    <tr>
+                        <th>title</th>
+                        <td><%= es.title %></td>
+                    </tr>
+                    <tr>
+                        <th>misc</th>
+                        <td> ID:<%=es.id%> | <%=es.state%>&nbsp;
+                                | category:<%=es.category%>&nbsp;
+                                | year:<%=es.year%>&nbsp;
+                                | volume:<%=es.volume_number%>&nbsp;
+                                | issue:<%=es.issue_number%>&nbsp;
+                                | page:<%=es.page_str%>&nbsp;
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>authors</th>
+                        <td>
+                            <% es.evidence_source_authors.each do |author| %>
+                                <%=author.name_abbr%> |
+                            <% end %>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>source</th>
+                        <td><%=es.source_title%></td>
+                    </tr>
+                    <tr>
+                        <th>URL</th>
+                        <td><%=es.URL%></td>
+                    </tr>
+                    <tr><th>DOI</th><td><%=es.DOI%></td></tr>
+                    
+                </table>
+            </div>
+        <% end %>
+    </div>
+    
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>commiter</th>
+                <th>state</th>
+                <th>category</th>
+                <th>title</th>
+                <th>year</th>
+                <th>source</th>
+                <th>DOI</th>
+                <th>volume</th>
+                <th>issue</th>
+                <th>page</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% @evidence_sources.each do |es| %>
+            <tr>
+                <th><%= es.id %></th>
+                <td><%= es.committer %></td>
+                <td><%= es.state %></td>
+                <td><%= es.category %></td>
+                
+                <% if es.URL.nil? || es.URL.length == 0 %>
+                    <td><%= es.title %></td>
+                <% else %>
+                    <td><a target="_blank" href="<%= es.URL %>"><%= es.title %></a></td>
+                <% end %>
+                
+                <td><%= es.year %></td>
+                <td><%= es.source_title %></td>
+                <td><%= es.DOI %></td>
+                <td><%= es.volume_number %></td>
+                <td><%= es.issue_number %></td>
+                <td><%= es.page_str %></td>
+            </tr>
+            <% end %>
+        </tbody>
+    </table>
+    
+</div>

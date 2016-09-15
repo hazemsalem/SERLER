@@ -1,0 +1,2 @@
+class EvidenceSourceAuthorsController < ApplicationController
+end
