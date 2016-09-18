@@ -1,8 +1,53 @@
 class EvidenceSourcesController < ApplicationController
     
     def index
-        puts "This is index."
+        published
+    end
+    
+    def my_submissions
+        # every user
+        @evidence_sources = EvidenceSource.where 'creator_id=?', current_user.id
+    end
+    
+    def new_submitted
+        # moderator and administrator
+        @evidence_sources = EvidenceSource.where 'status=?', 'NEW'
+    end
+    
+    def rejected
+        # admistrator ? maybe
+        @evidence_sources = EvidenceSource.where 'status=?', 'REJECTED'
+    end
+    
+    def accepted
+        # analystv and administrator
+        @evidence_sources = EvidenceSource.where 'status=?', 'ACCEPTED'
+    end
+    
+    def published
+        # every one
+        @evidence_sources = EvidenceSource.where 'status=?', 'PUBLISHED'
+    end
+    
+    def all
         @evidence_sources = EvidenceSource.all
+    end
+    
+    def update
+        # TODO
+        puts 'this is update  # TODO'
+        puts params
+        puts params.require(:status)
+        
+        esid = params.require(:id)
+        status = params.require(:status)
+        
+        evidence_source = EvidenceSource.find(esid)
+        evidence_source[:status] = status
+        evidence_source.save()
+        
+        puts evidence_source.id
+        puts evidence_source.status
     end
     
     def new
@@ -16,9 +61,12 @@ class EvidenceSourcesController < ApplicationController
         page_str = params.require(:evidence_source)[:page]
         
         @evidence_source = EvidenceSource.new(evidence_source_params)
-        @evidence_source.state = 'NEW'
-        @evidence_source.committer = -1
+        @evidence_source.status = 'NEW'
         @evidence_source.page_str = page_str
+        
+        _user = current_user
+        @evidence_source.creator_id = _user.id
+        @evidence_source.creator_email = _user.email
         
         unless page_str.nil?
             (b, c) = page_str.split('-')
@@ -59,6 +107,10 @@ class EvidenceSourcesController < ApplicationController
     def show
         puts "this is show"
         puts params[:id]
+    end
+    
+    def edit
+        @evidence_source = EvidenceSource.find(params[:id])
     end
     
     private def evidence_source_params

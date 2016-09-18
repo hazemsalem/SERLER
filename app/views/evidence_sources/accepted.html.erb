@@ -1,5 +1,5 @@
 <div class="container">
-    <h1>This is the INDEX. <%= link_to 'New Article', new_evidence_source_path %></h1>
+    <h1>LIST OF ACCEPTED EVIDENCE SOURCES.</h1>
     
     <div class="list-group">
         <% @evidence_sources.each do |es| %>
@@ -7,7 +7,11 @@
                 <table class="table table-stripped">
                     <tr>
                         <th>title</th>
-                        <td><%= es.title %></td>
+                        <td>
+                            <a href=<%= '/evidence_sources/' + es.id.to_s + '/edit' %> target="_blank">
+                                <%= es.title %>
+                            </a>
+                        </td>
                     </tr>
                     <tr>
                         <th>misc</th>
@@ -33,7 +37,7 @@
                     </tr>
                     <tr>
                         <th>URL</th>
-                        <td><%=es.URL%></td>
+                        <td>TODO: REMOVE THIS LINE? <%=es.URL%></td>
                     </tr>
                     <tr><th>DOI</th><td><%=es.DOI%></td></tr>
                     

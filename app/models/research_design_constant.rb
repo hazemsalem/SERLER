@@ -1,0 +1,2 @@
+class ResearchDesignConstant < ApplicationRecord
+end
